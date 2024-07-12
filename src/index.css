@@ -1,0 +1,8 @@
+body {
+  margin: 0;
+}
+
+/* debugging only */
+* {
+  border: 1px solid red;
+}

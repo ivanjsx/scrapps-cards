@@ -5,6 +5,8 @@ import { createRoot } from "react-dom/client";
 // components
 import App from "./components/app/app";
 
+// styles
+import "./index.css";
 
 
 const root = createRoot(
