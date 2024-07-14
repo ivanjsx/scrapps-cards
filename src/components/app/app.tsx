@@ -13,6 +13,10 @@ import { CardType } from "../../utils/types";
 // fake api
 import FakeApi from "../../utils/fake-api";
 
+// helpers
+import getMaxId from "../../utils/get-max-id";
+import getRandomHexColor from "../../utils/get-random-hex-color";
+
 
 
 const App: FC = () => {
@@ -30,7 +34,20 @@ const App: FC = () => {
     []
   );
   
-  const onAdd = (): void => {};
+  const onAdd = (): void => {
+    const newCard: CardType = {
+      id: getMaxId(cards) + 1,
+      hexColor: getRandomHexColor(),
+    };
+    setCards([newCard, ...cards]);
+  };
+  
+  const onDelete = (cardId: number) => (): void => {
+    const newCards = cards.filter(
+      (card) => card.id !== cardId
+    );
+    setCards(newCards);
+  };
   
   return (
     <div className={styles.app}>
