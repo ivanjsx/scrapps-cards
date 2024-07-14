@@ -40,14 +40,26 @@ const App: FC = () => {
       id: getMaxId(cards) + 1,
       hexColor: getRandomHexColor(),
     };
-    setCards([newCard, ...cards]);
+    if (!document.startViewTransition) {
+      setCards([newCard, ...cards]);
+      return;
+    };
+    const transition = document.startViewTransition(
+      () => setCards([newCard, ...cards])
+    );
   };
   
   const onDelete = (cardId: number) => (): void => {
     const newCards = cards.filter(
       (card) => card.id !== cardId
     );
-    setCards(newCards);
+    if (!document.startViewTransition) {
+      setCards(newCards);
+      return;
+    };
+    const transition = document.startViewTransition(
+      () => setCards(newCards)
+    );
   };
   
   const content = cards.map(
