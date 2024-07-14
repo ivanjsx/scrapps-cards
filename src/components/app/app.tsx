@@ -2,6 +2,7 @@
 import { FC, useEffect, useState } from "react";
 
 // components
+import Card from "../card/card";
 import AddCardButton from "../add-card-button/add-card-button";
 
 // styles
@@ -49,11 +50,26 @@ const App: FC = () => {
     setCards(newCards);
   };
   
+  const content = cards.map(
+    (card) => (
+      <li key={card.id} className={styles.galleryItem}>
+        <Card
+          id={card.id}
+          color={card.hexColor}
+          onDelete={onDelete(card.id)}
+        />
+      </li>
+    )
+  );
+  
   return (
     <div className={styles.app}>
       <div className={styles.buttonArea}>
         <AddCardButton onAdd={onAdd} />
       </div>
+      <ul className={styles.gallery}>
+        {content}
+      </ul>
     </div>
   );
 };
