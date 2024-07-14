@@ -52,13 +52,11 @@ const App: FC = () => {
   
   const content = cards.map(
     (card) => (
-      <li key={card.id} className={styles.galleryItem}>
-        <Card
-          id={card.id}
-          color={card.hexColor}
-          onDelete={onDelete(card.id)}
-        />
-      </li>
+      <Card
+        id={card.id}
+        color={card.hexColor}
+        onDelete={onDelete(card.id)}
+      />
     )
   );
   
