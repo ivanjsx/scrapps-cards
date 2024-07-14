@@ -11,7 +11,7 @@ import styles from "./app.module.css";
 import { CardType } from "../../utils/types";
 
 // fake api
-import getInitialCards from "../../utils/fake-api";
+import FakeApi from "../../utils/fake-api";
 
 
 
@@ -22,7 +22,7 @@ const App: FC = () => {
   useEffect(
     () => {
       const fetchData = async (): Promise<void> => {
-        const initialCards = await getInitialCards();
+        const initialCards = await FakeApi.getInitialCards();
         setCards(initialCards);
       };
       fetchData();

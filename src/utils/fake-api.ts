@@ -3,15 +3,17 @@ import initialCards from "./initial-cards";
 
 
 
-const getInitialCards = () => new Promise<Array<CardType>>(
-  (resolve) => {
-    setTimeout(
-      () => {
-        resolve(initialCards);
-      },
-      0
-    );
-  }
-);
+class FakeApi {
+  public static readonly getInitialCards = () => new Promise<Array<CardType>>(
+    (resolve) => {
+      setTimeout(
+        () => {
+          resolve(initialCards);
+        }, 
+        0
+      );
+    }
+  );
+};
 
-export default getInitialCards;
+export default FakeApi;
