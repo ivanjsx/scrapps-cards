@@ -18,7 +18,13 @@ type PropsType = Readonly<{
 const Card: FC<PropsType> = ({ id, color, createDeleteHandler }) => {  
   const onDelete = createDeleteHandler(id);
   return (
-    <li className={styles.card} style={{ backgroundColor: color }}>
+    <li 
+      className={styles.card} 
+      style={{ 
+        backgroundColor: color, 
+        viewTransitionName: `card-${id}` 
+      }}
+    >
       <DeleteCardButton onDelete={onDelete} />
     </li>
   );

@@ -17,7 +17,14 @@
   height: 100%;
 }
 
-/* debugging only */
-/* * {
-  border: 1px solid red;
-} */
+@layer view-transitions {
+  
+	@layer no-root {
+		:root {
+			view-transition-name: none;
+		}
+		::view-transition {
+			pointer-events: none;
+		}
+	}
+}
