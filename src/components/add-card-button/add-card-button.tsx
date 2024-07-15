@@ -1,5 +1,5 @@
 // libraries
-import { FC } from "react";
+import { FC, memo } from "react";
 
 // styles
 import styles from "./add-card-button.module.css";
@@ -21,4 +21,4 @@ const AddCardButton: FC<PropsType> = ({ onAdd }) => {
   );
 };
 
-export default AddCardButton;
+export default memo(AddCardButton);
