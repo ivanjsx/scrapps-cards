@@ -1,5 +1,5 @@
 // libraries
-import { FC, useRef } from "react";
+import { FC } from "react";
 
 // components
 import DeleteCardButton from "../delete-card-button/delete-card-button";
@@ -15,17 +15,9 @@ type PropsType = Readonly<{
   onDelete: () => void,
 }>;
 
-const Card: FC<PropsType> = ({ id, color, onDelete }) => {
-  
-  const cardRef = useRef<HTMLLIElement>(null);
-  
+const Card: FC<PropsType> = ({ id, color, onDelete }) => {  
   return (
-    <li 
-      key={id} 
-      ref={cardRef} 
-      className={styles.card} 
-      style={{ backgroundColor: color }}
-    >
+    <li className={styles.card} style={{ backgroundColor: color }}>
       <DeleteCardButton onDelete={onDelete} />
     </li>
   );

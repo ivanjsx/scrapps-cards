@@ -38,27 +38,27 @@ const App: FC = () => {
   const onAdd = (): void => {
     const newCard: CardType = {
       id: getMaxId(cards) + 1,
-      hexColor: getRandomHexColor(),
+      color: getRandomHexColor(),
     };
     if (!document.startViewTransition) {
       setCards([newCard, ...cards]);
       return;
     };
-    const transition = document.startViewTransition(
+    document.startViewTransition(
       () => setCards([newCard, ...cards])
     );
   };
   
   const onDelete = (cardId: number) => (): void => {
-    const newCards = cards.filter(
+    const filteredCards = cards.filter(
       (card) => card.id !== cardId
     );
     if (!document.startViewTransition) {
-      setCards(newCards);
+      setCards(filteredCards);
       return;
     };
-    const transition = document.startViewTransition(
-      () => setCards(newCards)
+    document.startViewTransition(
+      () => setCards(filteredCards)
     );
   };
   
@@ -66,7 +66,8 @@ const App: FC = () => {
     (card) => (
       <Card
         id={card.id}
-        color={card.hexColor}
+        key={card.id}
+        color={card.color}
         onDelete={onDelete(card.id)}
       />
     )

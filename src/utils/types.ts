@@ -1,4 +1,4 @@
 export type CardType = {
   id: number,
-  hexColor: string,
+  color: string,
 };

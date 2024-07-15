@@ -1,7 +1,7 @@
 :root {
-  --button-background-color: #F1F8FE;
-  --button-border-color: #FFFFFF;
-  --button-outline-color: #275DC5;
+  --button-background-color: aliceblue;
+  --button-border-color: white;
+  --button-outline-color: royalblue;
 }
 
 .body {
@@ -18,6 +18,6 @@
 }
 
 /* debugging only */
-* {
+/* * {
   border: 1px solid red;
-}
+} */
