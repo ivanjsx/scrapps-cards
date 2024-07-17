@@ -19,6 +19,9 @@ import FakeApi from "../../utils/fake-api";
 import getMaxId from "../../utils/get-max-id";
 import getRandomHexColor from "../../utils/get-random-hex-color";
 
+// constants
+import { DELETE_CARD_TRANSITION } from "../../utils/constants";
+
 
 
 const App: FC = () => {
@@ -67,6 +70,11 @@ const App: FC = () => {
         setCards(stateSetter);
         return;
       };
+      
+      const deleteButtonElement = event.target as HTMLButtonElement;
+      const cardElement = deleteButtonElement.closest("li") as HTMLLIElement;
+      cardElement.style.viewTransitionName = DELETE_CARD_TRANSITION;
+      
       document.startViewTransition(
         () => flushSync(
           () => setCards(stateSetter)
