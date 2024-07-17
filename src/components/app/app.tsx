@@ -1,5 +1,6 @@
 // libraries
-import { FC, useCallback, useEffect, useState } from "react";
+import { flushSync } from "react-dom";
+import { FC, MouseEvent, MouseEventHandler, useCallback, useEffect, useState } from "react";
 
 // components
 import Card from "../card/card";
@@ -18,6 +19,9 @@ import FakeApi from "../../utils/fake-api";
 import getMaxId from "../../utils/get-max-id";
 import getRandomHexColor from "../../utils/get-random-hex-color";
 
+// constants
+import { DELETE_CARD_TRANSITION } from "../../utils/constants";
+
 
 
 const App: FC = () => {
@@ -35,7 +39,7 @@ const App: FC = () => {
     []
   );
   
-  const onAdd = useCallback<() => void>(
+  const onAdd = useCallback<MouseEventHandler<HTMLButtonElement>>(
     (): void => {
       const stateSetter = (prevCards: Array<CardType>): Array<CardType> => {
         const newCard: CardType = {
@@ -49,14 +53,16 @@ const App: FC = () => {
         return;
       };
       document.startViewTransition(
-        () => setCards(stateSetter)
+        () => flushSync(
+          () => setCards(stateSetter)
+        )
       );
     },
     []    
   );
   
-  const createDeleteHandler = useCallback<(cardId: number) => () => void>(
-    (cardId: number) => (): void => {
+  const createDeleteHandler = useCallback<(cardId: number) => MouseEventHandler<HTMLButtonElement>>(
+    (cardId: number) => (event: MouseEvent<HTMLButtonElement>): void => {
       const stateSetter = (prevCards: Array<CardType>): Array<CardType> => prevCards.filter(
         (card) => card.id !== cardId
       );
@@ -64,8 +70,15 @@ const App: FC = () => {
         setCards(stateSetter);
         return;
       };
+      
+      const deleteButtonElement = event.target as HTMLButtonElement;
+      const cardElement = deleteButtonElement.closest("li") as HTMLLIElement;
+      cardElement.style.viewTransitionName = DELETE_CARD_TRANSITION;
+      
       document.startViewTransition(
-        () => setCards(stateSetter)
+        () => flushSync(
+          () => setCards(stateSetter)
+        )
       );
     },
     []    

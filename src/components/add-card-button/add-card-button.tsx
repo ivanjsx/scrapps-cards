@@ -1,5 +1,5 @@
 // libraries
-import { FC, memo } from "react";
+import { FC, memo, MouseEventHandler } from "react";
 
 // styles
 import styles from "./add-card-button.module.css";
@@ -10,7 +10,7 @@ import plusIcon from "../../icons/plus.svg";
 
 
 type PropsType = Readonly<{
-  onAdd: () => void,
+  onAdd: MouseEventHandler<HTMLButtonElement>,
 }>;
 
 const AddCardButton: FC<PropsType> = ({ onAdd }) => {  
