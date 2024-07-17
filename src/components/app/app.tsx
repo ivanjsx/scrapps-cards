@@ -1,4 +1,5 @@
 // libraries
+import { flushSync } from "react-dom";
 import { FC, MouseEvent, MouseEventHandler, useCallback, useEffect, useState } from "react";
 
 // components
@@ -49,7 +50,9 @@ const App: FC = () => {
         return;
       };
       document.startViewTransition(
-        () => setCards(stateSetter)
+        () => flushSync(
+          () => setCards(stateSetter)
+        )
       );
     },
     []    
@@ -65,7 +68,9 @@ const App: FC = () => {
         return;
       };
       document.startViewTransition(
-        () => setCards(stateSetter)
+        () => flushSync(
+          () => setCards(stateSetter)
+        )
       );
     },
     []    
