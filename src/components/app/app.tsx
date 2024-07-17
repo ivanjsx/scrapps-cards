@@ -1,5 +1,5 @@
 // libraries
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC, MouseEvent, MouseEventHandler, useCallback, useEffect, useState } from "react";
 
 // components
 import Card from "../card/card";
@@ -35,7 +35,7 @@ const App: FC = () => {
     []
   );
   
-  const onAdd = useCallback<() => void>(
+  const onAdd = useCallback<MouseEventHandler<HTMLButtonElement>>(
     (): void => {
       const stateSetter = (prevCards: Array<CardType>): Array<CardType> => {
         const newCard: CardType = {
@@ -55,8 +55,8 @@ const App: FC = () => {
     []    
   );
   
-  const createDeleteHandler = useCallback<(cardId: number) => () => void>(
-    (cardId: number) => (): void => {
+  const createDeleteHandler = useCallback<(cardId: number) => MouseEventHandler<HTMLButtonElement>>(
+    (cardId: number) => (event: MouseEvent<HTMLButtonElement>): void => {
       const stateSetter = (prevCards: Array<CardType>): Array<CardType> => prevCards.filter(
         (card) => card.id !== cardId
       );

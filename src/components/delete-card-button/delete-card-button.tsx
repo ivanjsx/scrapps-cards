@@ -1,5 +1,5 @@
 // libraries
-import { FC } from "react";
+import { FC, MouseEventHandler } from "react";
 
 // styles
 import styles from "./delete-card-button.module.css";
@@ -10,7 +10,7 @@ import trashIcon from "../../icons/trash.svg";
 
 
 type PropsType = Readonly<{
-  onDelete: () => void,
+  onDelete: MouseEventHandler<HTMLButtonElement>,
 }>;
 
 const DeleteCardButton: FC<PropsType> = ({ onDelete }) => {  
